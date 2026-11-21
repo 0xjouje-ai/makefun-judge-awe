@@ -6,5 +6,12 @@ const text =
   "Stars arrive one by one above it, each carrying light older than every hurry you have ever known. " +
   "You are small here. The field keeps your place while you rest. And nothing is asking.";
 
+const length = [...text].length;
+if (length < 1 || length > 280 || text.trim().length === 0) {
+  throw new Error(
+    `entry text must be 1-280 Unicode code points and not whitespace-only, got ${length}`,
+  );
+}
+
 mkdirSync("/output", { recursive: true });
 writeFileSync("/output/entry.txt", text, "utf8");
